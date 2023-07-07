@@ -6,7 +6,6 @@
 //
 unset($_SESSION);
 session_start();
-
 require 'router.php';
 
 $routerConnection = new Router();
