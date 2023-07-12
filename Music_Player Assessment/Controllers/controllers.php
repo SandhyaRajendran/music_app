@@ -13,51 +13,42 @@ class userController{
        $allSongAndArtistDetail = $this->modal->getValueFromAdmin();
        $songArtist = $this->modal->songArtist();
 
+       $search = $this->modal->search();
        require 'Views/homePage.php';
    }
    public function loginPage(){
-       require 'Views/loginPage.php';
+       require 'Views/Login/login.view.php';
    }
-   public function checkUserDetails($userValues){
-//        var_dump($userValues);
-
-//       echo($userValues['Password']);
-//        print_r($userValues);
-//       $enteredUserName = $userValues['userName'];
-//       $enteredPassword = $userValues['Password'];
-//
-////       var_dump($enteredPassword,$enteredUserName);
-//
-      $stored =  $this->modal->checkUserDetails($userValues);
-//      echo "<pre>";
-////      var_dump($stored['user_name']);
-//       echo "</pre>";
-//
-//       foreach ($stored as $storedValue){
-//           if($storedValue['user_name'] === $enteredUserName && $storedValue['PASSWORD'] === $enteredPassword){
-//                require 'Views/homePage.php';
-//                echo "success";
-//           }
-//           else{
-//                require 'Views/errorShower/error.php';
-//               }
-//       }
-       require 'Views/loginPage.php';
-
-   }
+//   public function checkUserDetails($userValues){
+//      $stored =  $this->modal->checkUserDetails($userValues);
+//       require 'Views/loginPage.php';
+//   }
     public function errorPage(){
-       require 'Views/errorShower/error.php';
+       require 'Views/Errors/404.view.php';
     }
     public function addNewSongs($values){
-//       echo "<pre>";
-//       var_dump($values);
-//        echo "</pre>";
         $this->modal->addSongs($values);
     }
     public function addPlaylist($playListDetails,$premium){
 //       var_dump($playListDetails,$premium);
         $this->modal->addPlaylist($playListDetails,$premium);
     }
-
-
+    public function loginLogic($userValues){
+       $this->modal->loginLogic($userValues);
+    }
+    public function logOutLogic(){
+       $this->modal->logOutLogic();
+    }
+    public function registerPage(){
+       $this->modal->registerPage();
+    }
+    public function register($userValues){
+       $this->modal->register($userValues);
+    }
+    public function search($value){
+//       var_dump($value);
+//       $this->modal->search($value);
+        $_SESSION['search'] = $value['search'];
+        require 'Views/homePage.php';
+    }
 }
